@@ -4,8 +4,12 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.example.dell.demo.R;
+
+import static com.example.dell.demo.R.id.searchView;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -14,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
         tabLayout.addTab(tabLayout.newTab().setText("Popular"));

@@ -1,26 +1,45 @@
 package com.example.dell.demo.Fragments;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.dell.demo.Adapters.RecyclerAdapter;
+import com.example.dell.demo.Models.ItemObject;
 import com.example.dell.demo.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link PeopleFrag.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link PeopleFrag#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.ArrayList;
+import java.util.List;
+
+
 public class PeopleFrag extends Fragment {
+    RecyclerAdapter adapter;
+    RecyclerView recyclerView;
+    private  List<ItemObject> demoData;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_people, container, false);
+
+        View view = inflater.inflate(R.layout.recyclerlist, container,
+                false);
+        recyclerView = (RecyclerView)view.findViewById(R.id.my_recycler_view);
+        recyclerView.setHasFixedSize(true);
+        LinearLayoutManager llm = new LinearLayoutManager(getActivity());
+        llm.setOrientation(LinearLayoutManager.VERTICAL);
+        recyclerView.setLayoutManager(llm);
+        demoData = new ArrayList<>();
+        ItemObject model = new ItemObject("Test1","Test2",R.drawable.arrow_bleu);
+        demoData.add(model);
+        adapter = new RecyclerAdapter(getActivity(),demoData);
+        recyclerView.setAdapter(adapter);
+        return view;
     }
 }
